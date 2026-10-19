@@ -1,11 +1,16 @@
 import './style.css'
+import { site } from './content.js'
+import { renderNav, initNav } from './sections/nav.js'
+import { renderHero, initHero } from './sections/hero.js'
+import { renderDetails } from './sections/details.js'
 
-// Starting point. Each section of the portfolio will live in src/sections/
-// and be added here one step at a time.
+document.title = site.tab
+
 document.querySelector('#app').innerHTML = `
-  <section class="start">
-    <h1>Akshita Dhariwal</h1>
-    <p>Creative marketing × intelligent automation</p>
-    <p class="note">Portfolio in progress. Built step by step.</p>
-  </section>
+  ${renderNav()}
+  ${renderHero()}
+  ${renderDetails()}
 `
+
+initNav()
+initHero()
