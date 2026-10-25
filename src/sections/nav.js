@@ -1,5 +1,6 @@
 import { nav } from '../content.js'
 import { icons, smile } from '../ui/icons.js'
+import { openSearch, initSearchKeys } from '../ui/search.js'
 
 export function renderNav() {
   const links = nav.links
@@ -20,7 +21,7 @@ export function renderNav() {
         <a href="#top" class="nav-brand" aria-label="akshita">${nav.brand}${smile(54)}</a>
       </nav>
       <div class="nav-icons">
-        <button class="icon-btn" aria-label="Search">${icons.search}</button>
+        <button class="icon-btn" data-search aria-label="Search my portfolio" title="Search (press /)">${icons.search}</button>
         <button class="icon-btn" aria-label="Apps">${icons.apps}</button>
         <button class="icon-btn" aria-label="Watchlist">${icons.bookmark}</button>
         <button class="avatar" aria-label="Akshita's profile"></button>
@@ -35,4 +36,7 @@ export function initNav() {
   const update = () => bar.classList.toggle('solid', window.scrollY > 40)
   update()
   window.addEventListener('scroll', update, { passive: true })
+
+  bar.querySelector('[data-search]').addEventListener('click', openSearch)
+  initSearchKeys()
 }

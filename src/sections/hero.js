@@ -1,12 +1,15 @@
 import { hero, actions } from '../content.js'
 import { icons, smile } from '../ui/icons.js'
 import { toast } from '../ui/toast.js'
+import { openPlayer } from '../ui/player.js'
+import { openShare, openCV, openReaction } from '../ui/share.js'
+import { openTryAI } from '../ui/tryai.js'
 import { renderArt, initArt } from './heroArt.js'
 
 // The hero: title, buttons and info strip. The photo behind them lives in heroArt.js.
 
 const roundButtons = [
-  { key: 'trailer', label: 'Watch the trailer' },
+  { key: 'trailer', label: 'See my projects', action: 'projects' },
   { key: 'plus', label: 'Add Akshita to your shortlist', action: 'shortlist' },
   { key: 'like', label: 'Like' },
   { key: 'dislike', label: 'Dislike' },
@@ -68,24 +71,28 @@ export function renderHero() {
 export function initHero() {
   initArt()
   document.querySelectorAll('.hero [data-action]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
+    btn.addEventListener('click', () => {
       const a = btn.dataset.action
-      if (a === 'share') {
-        try {
-          await navigator.clipboard.writeText(location.href)
-          toast(actions.share)
-        } catch {
-          toast(actions.shareFail + location.href)
-        }
-        return
-      }
+      if (a === 'share') return openShare()
+      if (a === 'download') return openCV()
+      if (a === 'tryAI') return openTryAI()
+      if (a === 'projects') return document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })
+      // Pressing like or dislike again just takes it back, without a pop-up.
       if (a === 'like' || a === 'dislike') {
         const other = document.querySelector(`.hero [data-action="${a === 'like' ? 'dislike' : 'like'}"]`)
         other.classList.remove('on')
         btn.classList.toggle('on')
         if (!btn.classList.contains('on')) return
+        return openReaction(a)
       }
-      if (a === 'shortlist') btn.classList.add('on')
+      if (a === 'shortlist') {
+        btn.classList.add('on')
+        return openReaction(a)
+      }
+      if (a === 'play' && hero.video) {
+        openPlayer(hero.video, `${hero.titleTop} ${hero.titleBottom}`)
+        return
+      }
       toast(actions[a])
     })
   })

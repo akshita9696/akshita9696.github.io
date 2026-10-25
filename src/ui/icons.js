@@ -21,6 +21,7 @@ export const icons = {
   play: '<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>',
   check:
     '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1A98FF"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  chevron: svg('<path d="M15 5l-7 7 7 7"/>', 28),
   trend: svg('<circle cx="12" cy="12" r="10"/><path d="M7 15l4-4 3 3 4-5M14 9h4v4"/>', 30),
 }
 
