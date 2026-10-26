@@ -16,7 +16,11 @@ export function renderArt() {
   return `
     <div class="hero-art" id="heroArt" aria-hidden="true">
       <div class="frame" id="heroFrame">
-        ${GAZE.map((g) => `<img class="gaze${g === 'center' ? ' on' : ''}" data-gaze="${g}" src="/images/gaze/${g}.jpg" alt="">`).join('')}
+        ${GAZE.map((g) =>
+          g === 'center'
+            ? `<img class="gaze on" data-gaze="${g}" src="/images/gaze/${g}.jpg" alt="">`
+            : `<img class="gaze" data-gaze="${g}" data-src="/images/gaze/${g}.jpg" alt="">`,
+        ).join('')}
       </div>
       <div class="hero-shade"></div>
     </div>
@@ -28,6 +32,12 @@ export function initArt() {
   const frame = document.getElementById('heroFrame')
   const gazes = [...frame.querySelectorAll('.gaze')]
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Only devices with a mouse can make her look around, so only they download the other
+  // seven photos. Phones get the one photo they show, which saves about 1.9 MB.
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    gazes.forEach((g) => g.dataset.src && (g.src = g.dataset.src))
+  }
 
   // Size the photo like "object-fit: cover", so we know exactly where her face is on screen.
   const layout = () => {
