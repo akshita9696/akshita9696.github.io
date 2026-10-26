@@ -548,7 +548,7 @@ a {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 14px;
+  gap: 22px;
   font-size: 18px;
   line-height: 1.5;
   color: #b6bfc9;
@@ -556,6 +556,36 @@ a {
 
 .roles b {
   color: #fff;
+}
+
+.role-scope {
+  margin: 4px 0 6px;
+  color: #d5dbe2;
+}
+
+/* Each point is an action and its result, marked with a small pink dash. */
+.role-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.role-points li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.role-points li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--pink);
 }
 
 .roles .when {

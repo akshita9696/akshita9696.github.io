@@ -28,7 +28,7 @@ export const hero = {
   isNew: 'NEW MOVIE',
   rank: '#1 in inspiring movies',
   description:
-    'She marketed 20+ brands across India, from Budweiser to Hyatt to Mamaearth. Then she crossed continents, earned a Bristol MSc, and became the CRM analyst who got every system talking to each other. By night, she builds AI that answers phones, finds leads and never asks for a day off. The final scene is yours to write. Spoiler: it ends with "You\'re hired."',
+    'She started out marketing 20+ brands across India, from Budweiser to Hyatt. Then she found her real superpower: making marketing run itself. Today she builds automated customer journeys, CRM workflows and AI agents that answer phones, chase leads and never ask for a day off. The final scene is yours to write. Spoiler: it ends with "You\'re hired."',
   genres: ['Inspiring', 'Drama', 'Feel-good'],
   rating: 'AMDb 9/10',
   year: '2026',
@@ -42,13 +42,56 @@ export const details = {
   tabs: ['Gallery', 'Details'],
   experience: {
     title: 'Experience',
-    badges: ['DATA VISION', 'CRM', 'AI'],
-    intro: 'From brand and partnership marketing in New Delhi to CRM and AI automation in the UK.',
+    badges: ['MARKETING AUTOMATION', 'LIFECYCLE', 'AI'],
+    intro: 'From brand and partnership marketing in New Delhi to marketing automation and AI in the UK.',
     roles: [
-      { when: 'Aug 2024 to now', role: 'AI Automation Consultant', org: 'Freelance', text: 'AI agents, voice receptionists and CRM automations for small businesses.' },
-      { when: 'Jul 2025 to Oct 2026', role: 'CRM Analyst', org: 'Hillcrest Estate Management, Bristol', text: 'Fixflo to HubSpot sync, Power BI dashboards saving around 7 hours a week, Mailchimp campaigns.' },
-      { when: 'Jul 2022 to Aug 2023', role: 'Marketing Manager', org: 'Blisstro Videos, New Delhi', text: '20+ brands, £90k+ in B2B partnerships, 50+ creators and a team of 10.' },
-      { when: 'Jul 2021 to Jun 2022', role: 'Marketing Executive', org: 'Blisstro Videos, New Delhi', text: 'Social, digital, print and event campaigns for brand clients.' },
+      {
+        when: 'Aug 2024 to now',
+        role: 'Marketing & AI Automation Consultant',
+        org: 'Freelance',
+        scope: 'Marketing and operations automation for small businesses, built in n8n.',
+        points: [
+          'Built 9 automation systems covering customer journeys, CRM workflows and AI agents.',
+          "Built an AI support agent that drafts email replies from a business's own knowledge base, with a person approving every send.",
+          'Built an AI voice receptionist that books, moves and cancels appointments, and flags calls that need a human.',
+          'Built a live AI tool on this site that reads any website and suggests 3 automations in about 5 seconds.',
+        ],
+      },
+      {
+        when: 'Jul 2025 to Oct 2026',
+        role: 'CRM Analyst',
+        org: 'Hillcrest Estate Management, Bristol',
+        scope: 'CRM, marketing automation and lifecycle communications for an 82-property residential portfolio.',
+        points: [
+          'Connected Fixflo to HubSpot with Zapier, so repair tickets landed in CRM pipelines automatically: ticket creation 40% faster and emergency dispatch under 15 minutes.',
+          'Built automated Mailchimp journeys for leaseholder onboarding and updates: 62% open rate and 25% fewer routine support calls.',
+          'Automated contractor renewal reminders in HubSpot, saving property managers 10+ hours a month of contract admin.',
+          'Cleaned and standardised resident, leaseholder and contractor data across HubSpot and Mailchimp, keeping it 99%+ accurate and GDPR compliant.',
+          'Built Power BI dashboards on CRM data that saved around 7 hours of reporting a week.',
+          'Kept a 100% complaint resolution rate, measured in Fixflo.',
+        ],
+      },
+      {
+        when: 'Jul 2022 to Aug 2023',
+        role: 'Marketing Manager',
+        org: 'Blisstro Videos, New Delhi',
+        scope: 'Promoted from Marketing Executive. Led marketing for 20+ brands across food, drinks, FMCG, beauty and hospitality.',
+        points: [
+          'Won £90k+ in B2B partnership revenue from Tier-1 brands like Budweiser and Kingfisher, owning each deal from pitch to ROI report.',
+          'Ran 50+ creator partnerships against monthly KPIs for every brand, lifting client engagement by 35%.',
+          'Led a cross-functional team of 10 across campaigns for Sula Wines, Mamaearth, Hyatt and JW Marriott.',
+        ],
+      },
+      {
+        when: 'Jul 2021 to Jun 2022',
+        role: 'Marketing Executive',
+        org: 'Blisstro Videos, New Delhi',
+        scope: 'Campaigns for brand clients across social, digital, print and out-of-home.',
+        points: [
+          'Delivered brand events end to end, from concept and suppliers to budget.',
+          'Marketed music and culture events including Sunburn, Supersonic and Inscape.',
+        ],
+      },
     ],
   },
   credits: {
@@ -67,12 +110,13 @@ export const details = {
   },
   tools: {
     title: 'Tools I speak fluently',
-    badges: ['CRM', 'AI'],
+    badges: ['AUTOMATION', 'AI'],
     groups: [
-      { label: 'CRM and marketing', items: ['HubSpot', 'Salesforce', 'Mailchimp', 'Bloomreach', 'Fixflo', 'Zapier', 'Google Analytics', 'LinkedIn Matched Audiences', 'Canva'] },
-      { label: 'AI and automation', items: ['n8n', 'Claude', 'Claude Code', 'Gemini', 'OpenAI', 'Vapi voice AI', 'Pinecone', 'Firecrawl', 'Groq', 'Python'] },
-      { label: 'Data and reporting', items: ['Power BI', 'Excel', 'Google Sheets', 'Airtable', 'Supabase'] },
-      { label: 'Building', items: ['React', 'Next.js', 'FastAPI', 'Vite', 'GitHub'] },
+      { label: 'Marketing automation and CRM', items: ['n8n', 'Zapier', 'HubSpot', 'Mailchimp', 'Salesforce', 'Bloomreach', 'Fixflo'] },
+      { label: 'AI', items: ['Claude', 'Claude Code', 'ChatGPT', 'Codex', 'Gemini', 'OpenAI API', 'Vapi voice AI', 'Pinecone', 'Firecrawl', 'Groq'] },
+      { label: 'Data and reporting', items: ['Power BI', 'Google Analytics', 'Excel', 'Google Sheets', 'Airtable', 'Supabase'] },
+      { label: 'Marketing', items: ['LinkedIn Matched Audiences', 'Canva'] },
+      { label: 'Building', items: ['Python', 'React', 'Next.js', 'FastAPI', 'Vite', 'GitHub'] },
     ],
   },
   // Paste a link into `link` to turn a name into a link.
@@ -263,9 +307,9 @@ export const search = {
   label: 'Search my portfolio',
   placeholder: 'Search my CV and projects',
   tryLabel: 'Try searching for',
-  tryThese: ['CRM', 'AI automation', 'HubSpot', 'Budweiser', 'Power BI', 'Bristol'],
+  tryThese: ['Marketing automation', 'AI', 'n8n', 'HubSpot', 'Budweiser', 'Bristol'],
   none: 'Nothing found for',
-  noneHint: 'Try CRM, HubSpot or AI.',
+  noneHint: 'Try marketing automation, HubSpot or AI.',
   sections: {
     about: 'About',
     experience: 'Experience',
@@ -324,7 +368,7 @@ export const contact = {
 // The "Contact us" section and footer at the bottom of the page.
 export const footer = {
   title: 'Contact us',
-  text: "Hiring for CRM, marketing automation or AI? I'd love to hear from you.",
+  text: "Hiring a marketing automation manager? I'd love to hear from you.",
   links: [
     { key: 'email', label: 'Email', handle: 'akshitadhariwal96@gmail.com', href: 'mailto:akshitadhariwal96@gmail.com?subject=Your%20portfolio%20caught%20my%20eye' },
     { key: 'linkedin', label: 'LinkedIn', handle: 'in/akshitadhariwal', href: 'https://www.linkedin.com/in/akshitadhariwal' },
@@ -430,7 +474,7 @@ export const share = {
   copied: 'Copied!',
   more: 'More options',
   subject: 'Akshita Dhariwal: your next hire',
-  message: 'Take a look at Akshita Dhariwal, a marketer who builds AI automation:',
+  message: 'Take a look at Akshita Dhariwal, a marketing automation manager who builds with AI:',
 }
 
 // The CV pop-up. Not on the page for now: the Download CV button was removed before launch

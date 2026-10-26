@@ -12,7 +12,7 @@ const entries = () => [
     find: `role-${i}`,
     section: s.sections.experience,
     title: `${r.role} · ${r.org}`,
-    text: `${r.when}. ${r.text}`,
+    text: `${r.when}. ${r.scope} ${r.points.join(' ')}`,
   })),
   { find: 'education', section: s.sections.education, title: d.education.title, text: d.education.text },
   { find: 'tools', section: s.sections.tools, title: d.tools.title, text: d.tools.groups.map((g) => `${g.label}: ${g.items.join(', ')}.`).join(' ') },

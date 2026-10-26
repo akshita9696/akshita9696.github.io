@@ -24,7 +24,16 @@ export function renderDetails() {
      <p class="card-meta">${hero.rating} &nbsp; ${hero.year} &nbsp; ${hero.runtime} ${badges(ex.badges)}</p>
      <p class="lead">${ex.intro}</p>
      <ul class="roles">
-       ${ex.roles.map((r, i) => `<li data-find="role-${i}"><span class="when">${r.when}</span><b>${r.role}</b> · ${r.org}<br>${r.text}</li>`).join('')}
+       ${ex.roles
+         .map(
+           (r, i) => `
+         <li data-find="role-${i}">
+           <span class="when">${r.when}</span><b>${r.role}</b> · ${r.org}
+           <p class="role-scope">${r.scope}</p>
+           <ul class="role-points">${r.points.map((pt) => `<li>${pt}</li>`).join('')}</ul>
+         </li>`,
+         )
+         .join('')}
      </ul>`,
     'experience',
   )

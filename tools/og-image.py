@@ -40,6 +40,6 @@ script = script.rotate(4, resample=Image.BICUBIC, expand=True)
 card.alpha_composite(script, (60, 286))
 
 draw = ImageDraw.Draw(card)
-draw.text((72, 520), 'Akshita Dhariwal  ·  CRM, marketing automation and AI', font=ImageFont.truetype(F + 'Futura.ttc', 27), fill=(170, 180, 191))
+draw.text((72, 520), 'Akshita Dhariwal  ·  Marketing Automation Manager', font=ImageFont.truetype(F + 'Futura.ttc', 27), fill=(170, 180, 191))
 card.convert('RGB').save(P + 'og-image.jpg', quality=88, optimize=True)
 print('ok')
