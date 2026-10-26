@@ -1,4 +1,4 @@
-import { hero, details as d, gallery, search as s } from '../content.js'
+import { hero, details as d, gallery, footer, search as s } from '../content.js'
 
 // The search box behind the nav's magnifying glass. It looks through everything
 // on the page (intro, experience, education, tools, projects) and jumps to the match.
@@ -15,8 +15,8 @@ const entries = () => [
     text: `${r.when}. ${r.text}`,
   })),
   { find: 'education', section: s.sections.education, title: d.education.title, text: d.education.text },
-  { find: 'tools', section: s.sections.tools, title: d.tools.title, text: d.tools.text },
-  { find: 'building', section: s.sections.building, title: d.building.title, text: d.building.text },
+  { find: 'tools', section: s.sections.tools, title: d.tools.title, text: d.tools.groups.map((g) => `${g.label}: ${g.items.join(', ')}.`).join(' ') },
+  { find: 'building', section: s.sections.building, title: d.building.title, text: d.building.items.map((i) => `${i.name}, ${i.text}.`).join(' ') },
   ...gallery.projects.map((p, i) => ({
     find: `project-${i}`,
     section: s.sections.projects,
@@ -24,6 +24,17 @@ const entries = () => [
     text: `${p.made} For: ${p.for}`,
     extra: p.kind,
   })),
+  // The other Gallery rows: now building, earlier work in India, and university projects.
+  ...['building', 'earlier', 'university'].flatMap((key) =>
+    gallery[key].projects.map((p, i) => ({
+      find: `${key}-${i}`,
+      section: s.sections[key],
+      title: p.title,
+      text: `${p.made} For: ${p.for}`,
+      extra: p.kind,
+    })),
+  ),
+  ...footer.links.map((l) => ({ find: `contact-${l.key}`, section: s.sections.contact, title: l.label, text: `${l.handle}. ${footer.text}` })),
 ]
 
 const esc = (str) => str.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])

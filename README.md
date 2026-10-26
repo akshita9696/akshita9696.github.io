@@ -2,6 +2,8 @@
 
 My personal portfolio: creative marketing × intelligent automation.
 
+**Live at [akshita9696.github.io](https://akshita9696.github.io)**
+
 I'm building it in public, one step at a time, by vibe coding with an AI pair programmer (Claude Code). I decide the concept, the story and every design call; the AI writes the code with me. The commit history shows how it came together.
 
 ## Run it locally
@@ -19,7 +21,7 @@ Then open the address it prints (usually http://localhost:5173).
 npm run build
 ```
 
-The finished site goes into `dist/`.
+The finished site goes into `dist/`. Every push to `main` builds it and publishes it to GitHub Pages automatically (see `.github/workflows/deploy.yml`).
 
 ## How the project is organised
 

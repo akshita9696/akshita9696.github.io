@@ -588,6 +588,57 @@ a {
   scroll-margin-top: 100px;
 }
 
+/* Tools card: tags grouped under small labels. */
+.tool-label {
+  margin: 14px 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.tool-tags span {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 15px;
+  color: #d5dbe2;
+}
+
+/* Now building card. */
+.building {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: 19px;
+  line-height: 1.5;
+  color: #b6bfc9;
+}
+
+.building b {
+  color: #fff;
+}
+
+.building a {
+  color: var(--pink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lead.small {
+  font-size: 16px;
+}
+
 /* ---------- gallery ---------- */
 .row-head {
   display: flex;
@@ -642,6 +693,15 @@ a {
   display: none;
 }
 
+/* Short rows: cards wrap side by side instead of scrolling. */
+.row.fixed {
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 400px));
+  overflow: visible;
+  margin: 0;
+  padding: 12px 0 16px;
+}
+
 .tile {
   scroll-snap-align: start;
   display: flex;
@@ -683,14 +743,95 @@ a {
   object-fit: cover;
 }
 
-.cover-kind {
+/* Photo covers: the picture behind, faded dark at the bottom so the title reads clearly. */
+.cover.photo {
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 0.15) 55%, rgba(0, 0, 0, 0.85) 100%),
+    var(--photo) center / cover;
+}
+
+.cover.photo .cover-title,
+.cover.photo .cover-kind,
+.cover.photo .cover-brands {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Workflow pictures are shown whole, on the same light grey as the n8n canvas. */
+.cover.has-img {
+  background: #f5f5f5;
+}
+
+.cover.has-img img {
+  object-fit: contain;
+  padding: 10px;
+}
+
+.cover.has-img.fill img {
+  object-fit: cover;
+  padding: 0;
+}
+
+.cover-zoom {
   position: absolute;
-  top: 16px;
-  left: 20px;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(11, 16, 22, 0.82);
+  color: #fff;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cover.has-img:hover .cover-zoom,
+.cover.has-img:focus-visible .cover-zoom {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .cover-zoom {
+    opacity: 1;
+  }
+}
+
+/* The label sits at the top and the title stacks at the bottom, so long titles never overlap it. */
+.cover-kind {
+  margin-bottom: auto;
+  padding-bottom: 8px;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Space between the Gallery's rows. */
+.row-block + .row-block {
+  margin-top: 44px;
+}
+
+/* "Building now" covers get a pulsing dot, like a live broadcast. */
+.cover-kind.live::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  vertical-align: 1px;
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+.cover-brands {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   opacity: 0.85;
 }
 
@@ -744,6 +885,15 @@ a {
   background: #e6ebf0;
 }
 
+.tile-btn.ghost {
+  background: #36404b;
+  color: #fff;
+}
+
+.tile-btn.ghost:hover {
+  background: #44505d;
+}
+
 /* ---------- video and picture viewer ---------- */
 .player {
   position: fixed;
@@ -767,6 +917,10 @@ a {
   width: min(1100px, 100%);
 }
 
+.player-box:has(.picture) {
+  width: min(1500px, 100%);
+}
+
 .player-frame {
   aspect-ratio: 16 / 9;
   border-radius: 12px;
@@ -782,17 +936,21 @@ a {
   border: 0;
 }
 
+/* Pictures keep their shape. Very wide workflows stay readable and scroll sideways. */
 .player-frame.picture {
   aspect-ratio: auto;
-  background: none;
+  background: #f5f5f5;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
 }
 
 .player-frame.picture img {
   display: block;
-  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-width: none;
   max-height: calc(100dvh - 120px);
   margin: 0 auto;
-  border-radius: 12px;
 }
 
 .player-close {
@@ -1095,6 +1253,398 @@ a {
   color: var(--muted);
 }
 
+/* ---------- trailer ---------- */
+/* Full-screen and black, with cinema letterbox bars top and bottom. */
+.trailer {
+  position: fixed;
+  z-index: 130;
+  inset: 0;
+  display: none;
+  background: radial-gradient(120% 90% at 50% 45%, #141a22 0%, #000 70%);
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.trailer.show {
+  display: grid;
+  place-items: center;
+}
+
+.trailer::before,
+.trailer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9vh;
+  background: #000;
+}
+
+.trailer::before {
+  top: 0;
+}
+
+.trailer::after {
+  bottom: 0;
+}
+
+/* Story-style progress: one bar per scene, filling over that scene's length. */
+.tr-bars {
+  position: absolute;
+  z-index: 2;
+  top: calc(16px + env(safe-area-inset-top, 0px));
+  left: 16px;
+  right: 72px;
+  display: flex;
+  gap: 5px;
+}
+
+.tr-bars i {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+
+.tr-bars i::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #fff;
+}
+
+.tr-bars i.done::after {
+  width: 100%;
+}
+
+.tr-bars i.now::after {
+  animation: tr-fill var(--d) linear forwards;
+}
+
+@keyframes tr-fill {
+  to {
+    width: 100%;
+  }
+}
+
+.tr-close {
+  position: absolute;
+  z-index: 2;
+  top: calc(6px + env(safe-area-inset-top, 0px));
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.tr-skip {
+  position: absolute;
+  z-index: 2;
+  right: 24px;
+  bottom: calc(9vh + 20px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tr-scene {
+  position: relative;
+  z-index: 1;
+  width: min(1000px, 100%);
+  padding: 0 24px;
+  text-align: center;
+  cursor: auto;
+}
+
+/* Every scene arrives out of a soft blur, like a film title. */
+.tr-scene > * {
+  animation: tr-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.tr-scene > :nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.tr-scene > :nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.tr-scene > :nth-child(4) {
+  animation-delay: 1s;
+}
+
+@keyframes tr-in {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.06);
+  }
+}
+
+.tr-line {
+  margin: 0;
+  font-family: var(--heavy);
+  text-transform: uppercase;
+  font-size: clamp(34px, 6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+}
+
+/* The turning-point line ("one hire changes everything") is pink. */
+.tr-line.accent {
+  color: var(--pink);
+}
+
+.tr-stars {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0.12em;
+  color: #ffc83d;
+}
+
+.tr-quote {
+  margin: 0;
+  font-family: var(--script);
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 1.1;
+}
+
+.tr-by {
+  margin: 20px 0 0;
+  font-size: clamp(15px, 1.8vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tr-sub {
+  margin: 22px 0 0;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+
+.tr-brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 26px;
+  margin: 28px 0 0;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Brand names flicker on one after another. */
+.tr-brands span {
+  animation: tr-in 0.6s ease-out both;
+  animation-delay: calc(0.6s + var(--i) * 0.18s);
+}
+
+.tr-stat {
+  margin: 0;
+  font-family: var(--heavy);
+  font-size: clamp(96px, 20vw, 220px);
+  line-height: 0.9;
+  color: var(--pink);
+}
+
+.tr-stat b {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.tr-label {
+  margin: 18px 0 0;
+  font-size: clamp(18px, 2.4vw, 28px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tr-badge {
+  margin: 0 0 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.tr-title {
+  margin: 0;
+}
+
+.tr-title .title-top,
+.tr-title .title-bottom {
+  font-size: clamp(60px, 11vw, 150px);
+  transform-origin: center;
+}
+
+.tr-tagline {
+  margin: 30px 0 26px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.tr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+/* The frame holds a scene. In trailer mode it fills the screen. */
+.tr-frame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* Highlights mode: a 9:16 story card centred on a dark backdrop, full screen on phones.
+   Each scene sets --card, and the colour fades from one card to the next. */
+.trailer.mode-highlights {
+  background: rgba(5, 8, 12, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.trailer.mode-highlights::before,
+.trailer.mode-highlights::after {
+  display: none;
+}
+
+.mode-highlights .tr-frame {
+  position: relative;
+  inset: auto;
+  height: min(88dvh, 860px);
+  aspect-ratio: 9 / 16;
+  max-width: calc(100vw - 32px);
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--card);
+  background-image: radial-gradient(120% 70% at 85% 0%, rgba(255, 255, 255, 0.24), transparent 60%),
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.35));
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  transition: background-color 0.5s ease;
+}
+
+.mode-highlights .tr-bars {
+  top: 14px;
+  left: 14px;
+  right: 14px;
+}
+
+.tr-head {
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.tr-head span:last-child {
+  opacity: 0.75;
+}
+
+.tr-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: url('/images/gaze/center.jpg') 82% 30% / 420% no-repeat;
+  flex: none;
+}
+
+.tr-avatar-big {
+  display: block;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  border-width: 3px;
+}
+
+.mode-highlights .tr-close {
+  top: 26px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.mode-highlights .tr-skip {
+  right: 16px;
+  bottom: 18px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.mode-highlights .tr-scene {
+  padding: 0 28px;
+}
+
+.mode-highlights .tr-line {
+  font-size: clamp(30px, 5vh, 46px);
+}
+
+.mode-highlights .tr-stat {
+  color: #fff;
+  font-size: clamp(90px, 15vh, 160px);
+}
+
+.mode-highlights .tr-label {
+  font-size: clamp(18px, 2.6vh, 24px);
+}
+
+.tr-note {
+  max-width: 320px;
+  margin: 14px auto 0;
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.mode-highlights .tr-badge {
+  font-size: 24px;
+}
+
+.mode-highlights .tr-title .title-top,
+.mode-highlights .tr-title .title-bottom {
+  font-size: clamp(44px, 7.5vh, 76px);
+}
+
+.mode-highlights .tr-tagline {
+  margin: 22px 0 20px;
+  font-size: 17px;
+}
+
+@media (max-width: 760px) {
+  .mode-highlights .tr-frame {
+    height: 100dvh;
+    width: 100vw;
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+}
+
 /* ---------- search ---------- */
 .search {
   position: fixed;
@@ -1250,6 +1800,88 @@ a {
   }
 }
 
+/* ---------- contact us and footer ---------- */
+.footer {
+  border-top: 1.5px solid var(--line);
+  padding: 56px clamp(16px, 5vw, 72px) 40px;
+  scroll-margin-top: 80px;
+}
+
+.footer h2 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.footer-text {
+  margin: 0 0 24px;
+  font-size: 19px;
+  color: var(--muted);
+}
+
+.contact-links {
+  list-style: none;
+  margin: 0 0 48px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+}
+
+.contact-links a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.contact-links a:hover {
+  border-color: var(--pink);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  grid-row: span 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #36404b;
+  display: grid;
+  place-items: center;
+}
+
+.contact-label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.contact-handle {
+  font-size: 15px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 28px;
+  padding-top: 24px;
+  border-top: 1.5px solid var(--line);
+  font-size: 15px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
 /* ---------- toast ---------- */
 .toast {
   position: fixed;
@@ -1281,6 +1913,24 @@ a {
   }
 }
 
+/* Mid-size screens: tighter menu, and the "akshita" brand steps aside so nothing is pushed off. */
+@media (max-width: 1080px) {
+  .nav {
+    gap: 24px;
+  }
+  .nav-links {
+    gap: 22px;
+    font-size: 17px;
+  }
+  .nav-links .nav-brand,
+  .nav-sep {
+    display: none;
+  }
+  .nav-icons {
+    gap: 16px;
+  }
+}
+
 @media (max-width: 760px) {
   .nav {
     gap: 14px;
@@ -1288,6 +1938,9 @@ a {
   .nav-links .nav-link,
   .nav-sep {
     display: none;
+  }
+  .nav-links .nav-brand {
+    display: inline-flex;
   }
   .nav-icons {
     gap: 12px;
@@ -1365,6 +2018,14 @@ a {
   .row {
     grid-auto-columns: 82vw;
     gap: 16px;
+  }
+  /* On phones the short rows swipe sideways like the others. */
+  .row.fixed {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    overflow-x: auto;
+    margin: 0 calc(-1 * clamp(16px, 5vw, 72px));
+    padding: 12px clamp(16px, 5vw, 72px) 16px;
   }
   .row-arrows {
     display: none;
