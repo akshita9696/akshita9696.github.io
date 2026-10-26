@@ -183,7 +183,7 @@ export const gallery = {
     {
       title: 'Property Management Automation',
       kind: 'AI automation',
-      made: 'I made a set of automations for booking, job intake, invoicing, subcontractor tax (CIS) through Xero, and a weekly summary for the owner.',
+      made: 'I made a set of automations for booking, job intake, invoicing, subcontractor tax (CIS) through Xero, and a monthly summary for each property owner.',
       for: 'Letting agents and property maintenance companies.',
       image: '/images/projects/property-management.jpg', flow: 'property', focus: { x: 30, y: 30, zoom: 1.5 },
       colors: ['#1d4ed8', '#081433'],
