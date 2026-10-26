@@ -37,7 +37,7 @@ export const hero = {
 }
 
 // The Details tab. Left column: two boxes. Right column: three boxes.
-// Kept short on purpose: the full story is in the CV and the Gallery.
+// Kept short on purpose: the Gallery tells the rest.
 export const details = {
   tabs: ['Gallery', 'Details'],
   experience: {
@@ -137,6 +137,7 @@ export const details = {
 export const gallery = {
   row: 'Recruiters also watched',
   view: 'View full size',
+  watch: 'Watch it run',
   visit: 'Visit site',
   projects: [
     {
@@ -144,7 +145,7 @@ export const gallery = {
       kind: 'AI automation',
       made: "I made an AI that reads customer emails, finds the answer in the business's own FAQs and documents, and writes a reply for the owner to approve.",
       for: 'Any small business, for example property management and real estate.',
-      image: '/images/projects/support-agent.jpg', focus: { x: 46, y: 34, zoom: 1.35 },
+      image: '/images/projects/support-agent.jpg', flow: 'support-agent', focus: { x: 46, y: 34, zoom: 1.35 },
       colors: ['#0f766e', '#042f2e'],
     },
     {
@@ -152,7 +153,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made a voice AI that answers the phone, books, moves and cancels appointments, takes messages, and emails the owner when a person needs to call back.',
       for: 'Clinics, salons, trades and any business that misses calls.',
-      image: '/images/projects/receptionist.jpg', focus: { x: 42, y: 42, zoom: 1.45 },
+      image: '/images/projects/receptionist.jpg', flow: 'receptionist', focus: { x: 42, y: 42, zoom: 1.45 },
       colors: ['#6d28d9', '#1e1036'],
     },
     {
@@ -160,7 +161,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made a system that finds local businesses on Google Maps, checks their website, reviews and YouTube, picks out their biggest problem, ranks them, and drafts a personal outreach email.',
       for: 'Agencies, real estate, aesthetics clinics and dentists looking for new clients.',
-      image: '/images/projects/lead-intelligence.jpg', focus: { x: 60, y: 24, zoom: 2.6 },
+      image: '/images/projects/lead-intelligence.jpg', flow: 'lead-intel', focus: { x: 60, y: 24, zoom: 2.6 },
       colors: ['#b45309', '#2b1503'],
     },
     {
@@ -168,7 +169,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made an automation that chases every quote with up to 4 different messages, and stops as soon as the client replies or opts out.',
       for: 'Trades and service businesses losing jobs to unanswered quotes.',
-      image: '/images/projects/quote-follow-up.jpg', focus: { x: 38, y: 62, zoom: 1.25 },
+      image: '/images/projects/quote-follow-up.jpg', flow: 'quote', focus: { x: 38, y: 62, zoom: 1.25 },
       colors: ['#be123c', '#2d0610'],
     },
     {
@@ -176,7 +177,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made an automation that brings back customers who are overdue a visit, asks every customer for a review after a job, and respects anyone who opts out.',
       for: 'Dentists, salons and home services that rely on repeat customers.',
-      image: '/images/projects/reactivation-reviews.jpg', focus: { x: 55, y: 62, zoom: 1.2 },
+      image: '/images/projects/reactivation-reviews.jpg', flow: 'reactivation', focus: { x: 55, y: 62, zoom: 1.2 },
       colors: ['#15803d', '#05210f'],
     },
     {
@@ -184,7 +185,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made a set of automations for booking, job intake, invoicing, subcontractor tax (CIS) through Xero, and a weekly summary for the owner.',
       for: 'Letting agents and property maintenance companies.',
-      image: '/images/projects/property-management.jpg', focus: { x: 30, y: 30, zoom: 1.5 },
+      image: '/images/projects/property-management.jpg', flow: 'property', focus: { x: 30, y: 30, zoom: 1.5 },
       colors: ['#1d4ed8', '#081433'],
     },
     {
@@ -192,7 +193,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made the system behind my own automation business: it takes in leads from my form, syncs meetings, and replies to emails using my own knowledge base.',
       for: 'Running my own business.',
-      image: '/images/projects/agency-backend.jpg', focus: { x: 42, y: 38, zoom: 1.3 },
+      image: '/images/projects/agency-backend.jpg', flow: 'agency', focus: { x: 42, y: 38, zoom: 1.3 },
       colors: ['#c026d3', '#2a0730'],
     },
     {
@@ -200,7 +201,7 @@ export const gallery = {
       kind: 'AI automation',
       made: 'I made an automation that searches Google for prospects every week, finds their contact details, and saves them to a CRM.',
       for: 'Building a list of people to sell to.',
-      image: '/images/projects/lead-gen-prospecting.jpg', focus: { x: 60, y: 56, zoom: 2.5 },
+      image: '/images/projects/lead-gen-prospecting.jpg', flow: 'lead-gen', focus: { x: 60, y: 56, zoom: 2.5 },
       colors: ['#0369a1', '#03192b'],
     },
     {
@@ -325,7 +326,7 @@ export const search = {
 }
 
 // The big pop-ups behind the plus, thumbs up and thumbs down buttons.
-// Each button is { label, do }: 'share' opens the share pop-up, 'cv' the CV one,
+// Each button is { label, do }: 'share' opens the share pop-up, 'contact' starts an email,
 // 'feedback' starts an email to me, 'close' just closes.
 export const reactions = {
   shortlist: {
@@ -399,51 +400,6 @@ export const actions = {
   play: 'My intro video is coming soon.',
 }
 
-// The trailer behind the film-reel button: the viewer's own problems, then the big numbers
-// counting up as the answer, then a joke review and the title card. Each scene shows for `seconds`. Numbers only include facts I can back up.
-export const trailer = {
-  label: 'Watch the trailer',
-  skip: 'Skip',
-  scenes: [
-    { type: 'line', text: 'Your CRM is full of data nobody uses.', seconds: 2.6 },
-    { type: 'line', text: 'Your customer journeys stop at the welcome email.', seconds: 2.8 },
-    { type: 'line', text: 'Your leads go cold before anyone follows up.', seconds: 2.6 },
-    { type: 'line', text: 'Your team copies the same data between five tools.', seconds: 2.8 },
-    { type: 'line', text: 'This year, one hire changes everything.', accent: true, seconds: 3 },
-    { type: 'stat', prefix: '~', value: 7, suffix: ' hrs', label: 'saved every week with CRM dashboards', seconds: 2.6 },
-    { type: 'stat', value: 27, label: 'automation workflows built', seconds: 2.6 },
-    { type: 'stat', prefix: '£', value: 90, suffix: 'k+', label: 'won in B2B partnerships', seconds: 2.4 },
-    { type: 'stat', value: 50, suffix: '+', label: 'creators managed', seconds: 2.2 },
-    { type: 'line', text: 'Part marketer. Part builder. All in.', seconds: 2.8 },
-    // An obvious joke, in the style of a five-star movie review.
-    { type: 'review', quote: 'Finally, someone who understands me.', by: 'Your CRM', seconds: 3.2 },
-    { type: 'final', tagline: 'Coming soon to your team.', seconds: 0 },
-  ],
-  buttons: { contact: 'Email me', cv: 'Download my CV', again: 'Watch again' },
-}
-
-// Option 2: Instagram-style story cards with the big numbers, one colour per card.
-export const highlights = {
-  label: 'My highlights',
-  skip: 'Skip',
-  name: 'akshita',
-  scenes: [
-    { type: 'intro', title: 'My highlights', text: 'Tap through the numbers', seconds: 2.4, color: '#ff5fa2' },
-    { type: 'card', value: 20, suffix: '+', label: 'brands marketed', note: 'Budweiser, Sula Wines, Mamaearth, Hyatt, JW Marriott and more, across India', seconds: 3.2, color: '#0f766e' },
-    { type: 'card', prefix: '£', value: 90, suffix: 'k+', label: 'won in B2B partnerships', note: 'From pitch to signed contract to ROI report', seconds: 3, color: '#6d28d9' },
-    { type: 'card', value: 50, suffix: '+', label: 'creators managed', note: 'Sourcing, briefing, approvals and results', seconds: 3, color: '#b45309' },
-    { type: 'card', prefix: '~', value: 7, suffix: ' hrs', label: 'saved every week', note: 'With Power BI dashboards and a Fixflo to HubSpot sync', seconds: 3, color: '#be123c' },
-    { type: 'card', value: 27, label: 'automation workflows built', note: 'Voice receptionist, support agent, lead finder and more', seconds: 3, color: '#1d4ed8' },
-    { type: 'final', tagline: 'Coming soon to your team.', seconds: 0 },
-  ],
-  buttons: { contact: 'Email me', cv: 'Download my CV', again: 'Watch again' },
-}
-
-// Not on the page for now: the film-reel button was removed (25 Oct 2026) until she decides
-// what the trailer should be. src/ui/trailer.js still plays either one if it comes back.
-// Which one it would play: 'trailer' or 'highlights'.
-export const reel = 'trailer'
-
 // The "Try my AI" pop-up: a visitor pastes their website and my n8n workflow
 // reads the landing page and suggests 3 AI automations for their business.
 // `endpoint` is that workflow's webhook ("Portfolio: AI Ideas Widget" in n8n, PORTFOLIO folder).
@@ -475,15 +431,4 @@ export const share = {
   more: 'More options',
   subject: 'Akshita Dhariwal: your next hire',
   message: 'Take a look at Akshita Dhariwal, a marketing automation manager who builds with AI:',
-}
-
-// The CV pop-up. Not on the page for now: the Download CV button was removed before launch
-// (26 Oct 2026). Put the PDF in public/cv/, its path in `file`, and bring the button back.
-// Until then, the pop-up says the CV is coming soon.
-export const cv = {
-  file: '',
-  done: { title: 'Your CV has been downloaded', text: "Thanks for your interest! It's in your downloads folder. Want to pass my portfolio on to your team?" },
-  soon: { title: 'My CV is almost ready', text: "It'll be here very soon. In the meantime, you can share my portfolio with your team." },
-  shareNow: 'Share it now',
-  close: 'Close',
 }

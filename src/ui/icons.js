@@ -11,12 +11,10 @@ export const icons = {
       .join(''),
   ),
   bookmark: svg('<path d="M6 3h12v18l-6-4-6 4z"/>'),
-  trailer: svg('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/>'),
   plus: svg('<path d="M12 5v14M5 12h14"/>'),
   like: svg('<path d="M7 11v9H4v-9zM7 11l4-8a2 2 0 0 1 2 2v4h5.5a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.3 20H7"/>'),
   dislike: svg('<path d="M7 13V4H4v9zM7 13l4 8a2 2 0 0 0 2-2v-4h5.5a2 2 0 0 0 2-2.3l-1.2-7A2 2 0 0 0 17.3 4H7"/>'),
   share: svg('<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.9l7.6-4.6M8.2 13.1l7.6 4.6"/>'),
-  download: svg('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
   bolt: svg('<path d="M13 3L6 13h5l-1 8 7-10h-5z" fill="currentColor"/>', 16),
   play: '<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>',
   check:

@@ -1,6 +1,8 @@
 import { gallery as g } from '../content.js'
 import { icons } from '../ui/icons.js'
 import { openPlayer } from '../ui/player.js'
+import { openFlow } from '../ui/flow.js'
+import { flows } from '../flows/index.js'
 
 // The Gallery tab: sideways-scrolling rows of project cards, like a streaming site.
 // Automation work first, then what's being built now, the marketing years in India,
@@ -23,8 +25,8 @@ const zoom = (f) =>
 const cover = (p, id) => {
   const style = `--c1:${p.colors[0]};--c2:${p.colors[1]}${p.ink ? `;--ink:${p.ink}` : ''}`
   return p.image
-    ? `<button class="cover has-img${p.fit === 'cover' || p.focus ? ' fill' : ''}" data-view="${id}" aria-label="${g.view}: ${p.title}" style="${style}">
-         <img src="${p.image}" alt="${p.title}" loading="lazy"${zoom(p.focus)}><span class="cover-zoom">${g.view}</span>
+    ? `<button class="cover has-img${p.fit === 'cover' || p.focus ? ' fill' : ''}" data-view="${id}" aria-label="${p.flow ? g.watch : g.view}: ${p.title}" style="${style}">
+         <img src="${p.image}" alt="${p.title}" loading="lazy"${zoom(p.focus)}><span class="cover-zoom">${p.flow ? `${icons.play}${g.watch}` : g.view}</span>
        </button>`
     : `<div class="cover${p.photo ? ' photo' : ''}" style="${style}${p.photo ? `;--photo:url('${p.photo}')` : ''}">
          <span class="cover-kind${p.building ? ' live' : ''}">${p.kind}</span>
@@ -80,7 +82,9 @@ export function initGallery() {
     if (view) {
       const [key, i] = view.dataset.view.split(':')
       const p = rows.find((r) => r.key === key).projects[i]
-      openPlayer(p.image, p.title)
+      // Automations with a story play it; everything else opens its picture.
+      if (p.flow) openFlow(flows[p.flow])
+      else openPlayer(p.image, p.title)
       return
     }
     const arrow = e.target.closest('[data-scroll]')

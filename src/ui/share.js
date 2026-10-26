@@ -1,7 +1,7 @@
-import { share as s, cv, reactions, contact, feedback } from '../content.js'
+import { share as s, reactions, contact, feedback } from '../content.js'
 import { openModal, closeModal } from './modal.js'
 
-// The big pop-ups behind the hero's round buttons: share, CV, and the reactions.
+// The big pop-ups behind the hero's round buttons: share and the reactions.
 
 // The page address without any #section on the end.
 const pageUrl = () => location.origin + location.pathname
@@ -46,30 +46,10 @@ export function openShare() {
   })
 }
 
-export function openCV() {
-  if (cv.file) {
-    const a = document.createElement('a')
-    a.href = cv.file
-    a.download = cv.file.split('/').pop()
-    a.click()
-  }
-  const t = cv.file ? cv.done : cv.soon
-  openModal({
-    title: t.title,
-    body: `
-      <p class="modal-text">${t.text}</p>
-      <p class="share-to">
-        <button class="modal-btn" data-share>${cv.shareNow}</button>
-        <button class="modal-btn ghost" data-close>${cv.close}</button>
-      </p>`,
-    onOpen: (box) => box.querySelector('[data-share]').addEventListener('click', openShare),
-  })
-}
-
 // Shortlist, like and dislike. The first button is the bold one.
 export function openReaction(kind) {
   const r = reactions[kind]
-  const next = { share: openShare, cv: openCV, contact: openContact, feedback: openFeedback }
+  const next = { share: openShare, contact: openContact, feedback: openFeedback }
   openModal({
     title: r.title,
     body: `

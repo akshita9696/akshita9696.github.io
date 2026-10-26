@@ -1,5 +1,5 @@
 // A big centred pop-up for moments that matter more than a toast,
-// like downloading the CV or sharing the portfolio.
+// like sharing the portfolio or trying my AI.
 
 let el
 let lastFocus
